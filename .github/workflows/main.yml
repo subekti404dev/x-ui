@@ -37,7 +37,7 @@ jobs:
         run: |
           mkdir x-ui && mkdir x-ui/bin
           cp bin/*.dat x-ui/bin/
-          cp bin/xray-* x-ui/bin/
+          cp bin/xray-linux-amd64 x-ui/bin/
           cp main x-ui/x-ui
           cp x-ui.* x-ui/
           cd x-ui && ls -lah
