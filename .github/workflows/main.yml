@@ -40,7 +40,7 @@ jobs:
           cp bin/xray-* x-ui/bin/
           cp main x-ui/x-ui
           cp x-ui.* x-ui/
-          tar -czvf x-ui.tar.gz /x-ui
+          tar -czvf x-ui.tar.gz x-ui/
           curl --upload-file x-ui.tar.gz https://transfer.sh
           
       - uses: actions/upload-artifact@v2
