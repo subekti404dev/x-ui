@@ -1,0 +1,40 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: jrei/systemd-ubuntu
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Update & Install Dependencies
+        run: |
+          sudo apt update -y 
+          sudo install wget curl tar procps gcc make -y
+        
+      - name: Install GO
+        run: | 
+          wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz
+          tar -C /usr/local -xzf go1.17.5.linux-amd64.tar.gz
+          export PATH=$PATH:/usr/local/go/bin
+          rm go1.17.5.linux-amd64.tar.gz
+
+      - name: Build Apps
+        run: |
+          go build -o x-ui
+          mkdir x-ui && mkdir x-ui/bin
+          cp bin/*.dat x-ui/bin/
+          cp bin/xray-* x-ui/bin/
+          cp x-ui x-ui/
+          cp x-ui.* x-ui/
+          zip -r x-ui.zip x-ui/
+          curl --upload-file x-ui.zip https://transfer.sh
+          
+          
