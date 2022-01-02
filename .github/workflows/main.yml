@@ -60,4 +60,4 @@ jobs:
         run: docker build -t subekti13/x-ui-panel .
       
       - name: Push Docker
-        run: docker push subekti13/x-ui-panel
+        run: docker push index.docker.io/subekti13/x-ui-panel
