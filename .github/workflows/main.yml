@@ -17,7 +17,7 @@ jobs:
       - name: Update & Install Dependencies
         run: |
           apt update -y 
-          apt install wget curl tar procps gcc make -y
+          apt install wget zip curl tar procps gcc make -y
         
       - name: Install GO
         run: | 
