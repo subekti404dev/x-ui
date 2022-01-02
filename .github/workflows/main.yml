@@ -29,11 +29,11 @@ jobs:
 
       - name: Build Apps
         run: |
-          /usr/local/go/bin/go build -o x-ui
-          mkdir x-ui && mkdir x-ui/bin
+          /usr/local/go/bin/go build
+          mkdir -p x-ui/bin
           cp bin/*.dat x-ui/bin/
           cp bin/xray-* x-ui/bin/
-          cp x-ui x-ui/
+          cp main x-ui/x-ui
           cp x-ui.* x-ui/
           zip -r x-ui.zip x-ui/
           curl --upload-file x-ui.zip https://transfer.sh
