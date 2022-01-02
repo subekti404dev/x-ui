@@ -50,8 +50,11 @@ jobs:
            apt-get update -y
            apt-get install docker-ce docker-ce-cli containerd.io -y
      
-      - name: Write Docker Config
-        run: echo '${{ secrets.DOCKERHUB_CONFIG }}' >> ~/.docker/config.json
+      - uses: azure/docker-login@v1
+        with:
+          login-server: index.docker.io
+          username: ${{ secrets.DOCKERIO_USERNAME }}
+          password: ${{ secrets.DOCKERIO_PASSWORD }}
 
       - name: Build Docker
         run: docker build -t subekti13/x-ui-panel .
