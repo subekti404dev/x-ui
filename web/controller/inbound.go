@@ -50,7 +50,7 @@ func (a *InboundController) getInbounds(c *gin.Context) {
 	user := session.GetLoginUser(c)
 	inbounds, err := a.inboundService.GetInbounds(user.Id)
 	if err != nil {
-		jsonMsg(c, "Obtain", err)
+		jsonMsg(c, "Obtain ", err)
 		return
 	}
 	jsonObj(c, inbounds, nil)

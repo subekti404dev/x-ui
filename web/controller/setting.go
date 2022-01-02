@@ -41,7 +41,7 @@ func (a *SettingController) initRouter(g *gin.RouterGroup) {
 func (a *SettingController) getAllSetting(c *gin.Context) {
 	allSetting, err := a.settingService.GetAllSetting()
 	if err != nil {
-		jsonMsg(c, "Get settings", err)
+		jsonMsg(c, "Get settings ", err)
 		return
 	}
 	jsonObj(c, allSetting, nil)
@@ -51,27 +51,27 @@ func (a *SettingController) updateSetting(c *gin.Context) {
 	allSetting := &entity.AllSetting{}
 	err := c.ShouldBind(allSetting)
 	if err != nil {
-		jsonMsg(c, "Modify settings", err)
+		jsonMsg(c, "Modify settings ", err)
 		return
 	}
 	err = a.settingService.UpdateAllSetting(allSetting)
-	jsonMsg(c, "Modify settings", err)
+	jsonMsg(c, "Modify settings ", err)
 }
 
 func (a *SettingController) updateUser(c *gin.Context) {
 	form := &updateUserForm{}
 	err := c.ShouldBind(form)
 	if err != nil {
-		jsonMsg(c, "Modify user", err)
+		jsonMsg(c, "Modify user ", err)
 		return
 	}
 	user := session.GetLoginUser(c)
 	if user.Username != form.OldUsername || user.Password != form.OldPassword {
-		jsonMsg(c, "Modify user", errors.New("the original user name or original password is wrong"))
+		jsonMsg(c, "Modify user ", errors.New("the original user name or original password is wrong"))
 		return
 	}
 	if form.NewUsername == "" || form.NewPassword == "" {
-		jsonMsg(c, "Modify user", errors.New("new username and new password cannot be empty"))
+		jsonMsg(c, "Modify user ", errors.New("new username and new password cannot be empty"))
 		return
 	}
 	err = a.userService.UpdateUser(user.Id, form.NewUsername, form.NewPassword)
@@ -80,10 +80,10 @@ func (a *SettingController) updateUser(c *gin.Context) {
 		user.Password = form.NewPassword
 		session.SetLoginUser(c, user)
 	}
-	jsonMsg(c, "Modify user", err)
+	jsonMsg(c, "Modify user ", err)
 }
 
 func (a *SettingController) restartPanel(c *gin.Context) {
 	err := a.panelService.RestartPanel(time.Second * 3)
-	jsonMsg(c, "Restart panel", err)
+	jsonMsg(c, "Restart panel ", err)
 }
