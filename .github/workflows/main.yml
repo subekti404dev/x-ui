@@ -40,7 +40,10 @@ jobs:
           cp bin/xray-* x-ui/bin/
           cp main x-ui/x-ui
           cp x-ui.* x-ui/
-          zip -r x-ui.zip x-ui/
-          curl --upload-file x-ui.zip https://transfer.sh
           
+      - uses: actions/upload-artifact@v2
+        with:
+          name: x-ui
+          path: x-ui/
+
           
