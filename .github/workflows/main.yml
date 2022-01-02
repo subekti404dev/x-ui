@@ -49,8 +49,12 @@ jobs:
            echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
            apt-get update -y
            apt-get install docker-ce docker-ce-cli containerd.io -y
-           usermod -aG docker $USER
      
+      - name: Write Docker Config
+        run: echo '${{ secrets.DOCKERHUB_CONFIG }}' >> ~/.docker/config.json
+
       - name: Build Docker
         run: docker build -t subekti13/x-ui-panel .
       
+      - name: Push Docker
+        run: docker push subekti13/x-ui-panel
