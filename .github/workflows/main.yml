@@ -30,7 +30,7 @@ jobs:
       - name: Build Apps
         run: |
           /usr/local/go/bin/go build
-          mkdir -p x-ui/bin
+          mkdir x-ui && mkdir x-ui/bin
           cp bin/*.dat x-ui/bin/
           cp bin/xray-* x-ui/bin/
           cp main x-ui/x-ui
