@@ -24,11 +24,12 @@ jobs:
           wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz
           tar -C /usr/local -xzf go1.17.5.linux-amd64.tar.gz
           export PATH=$PATH:/usr/local/go/bin
+          
           rm go1.17.5.linux-amd64.tar.gz
 
       - name: Build Apps
         run: |
-          go build -o x-ui
+          /usr/local/go/bin/go build -o x-ui
           mkdir x-ui && mkdir x-ui/bin
           cp bin/*.dat x-ui/bin/
           cp bin/xray-* x-ui/bin/
