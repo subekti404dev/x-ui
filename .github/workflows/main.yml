@@ -29,7 +29,10 @@ jobs:
 
       - name: Build Apps
         run: |
-          /usr/local/go/bin/go build
+          /usr/local/go/bin/go build && ls -lah
+      
+      - name: Archive
+        run: |
           mkdir x-ui && mkdir x-ui/bin
           cp bin/*.dat x-ui/bin/
           cp bin/xray-* x-ui/bin/
