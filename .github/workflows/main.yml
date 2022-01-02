@@ -29,7 +29,9 @@ jobs:
 
       - name: Build Apps
         run: |
-          /usr/local/go/bin/go build && ls -lah
+          /usr/local/go/bin/go build
+          mv x-ui main
+          ls -lah
       
       - name: Archive
         run: |
