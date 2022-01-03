@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM alpine
 
 WORKDIR /usr/local
 ADD x-ui/ x-ui/
