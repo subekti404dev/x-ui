@@ -1,4 +1,4 @@
-FROM  busybox
+FROM ubuntu
 
 WORKDIR /usr/local
 ADD x-ui/ x-ui/
