@@ -1,4 +1,4 @@
-FROM alpine
+FROM jrei/systemd-ubuntu
 
 WORKDIR /usr/local
 ADD x-ui/ x-ui/
